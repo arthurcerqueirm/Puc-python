@@ -1,0 +1,85 @@
+# Inicializaçao das variáveis
+
+meses = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+]
+mesNum = 0
+qtdMesesEscaldantes = 0
+mediaTemperaturas = 0
+mesQuente = ""
+mesFrio = ""
+contador = 0
+temperaturaMeses = [""] * 12 #determinar o tamanho do array
+mesesEscaldantes = [""] * 12 #determinar o tamanho do array
+mesesFrio = [""] * 12 #determinar o tamanho do array
+
+
+temperaturaMax = 0
+temperaturaMin = 60
+
+#Inicio do programa 
+print(" ")
+print("=" * 25)
+print(" ")
+print("Bem vindo ao Resumo da Temperatura Anual")
+print("Para começar vamos coletar as temperaturas dos meses \n")
+
+# Coleta de dados
+
+for mes in meses:
+    
+    temperatura = -61
+    while temperatura < -60 or temperatura > 50:
+        temperatura = int(input(f"Informe a temperatura máxima de {mes}: "))
+        if temperatura < -60 or temperatura > 50:
+            print("Valor invalido, por favor insira um valor entre -60 e +50 graus celsius \n")
+
+# Calculos
+    
+    mediaTemperaturas += temperatura
+    
+    if temperatura > 33:
+        qtdMesesEscaldantes += 1
+    
+    if temperatura > temperaturaMax:
+        temperaturaMax = temperatura
+        mesQuente = mes
+
+
+    if temperatura < temperaturaMin:
+        temperaturaMin = temperatura
+        mesFrio = mes
+
+    temperaturaMeses[contador] = str(temperatura)
+
+    contador += 1
+
+mediaTemperaturas = mediaTemperaturas / 12
+
+#Exibição da Tabela
+
+print(" ")
+print("=" * 25)
+print("| Mês |" + 3 * " " + "| Temperatura |")
+print("=" * 25)
+
+for i in range(12):
+    print("| " + meses[i][:3] + " | " + " " * 3 + "|" + (4 - len(temperaturaMeses[i])) * " "  + temperaturaMeses[i]  + " |" )
+    print("-" * 25)
+
+# Exibiçao das informações
+
+print(" ")
+print(f"Temperatura média máxima anual: {mediaTemperaturas:.2F} °C" )
+print(" ")
+print(f"Quantidade de meses escaldantes:  {qtdMesesEscaldantes} meses" )
+print(" ")
+print(f"Mês mais escaldante do ano foi: {mesQuente.upper()}, atingindo a máxima de {temperaturaMax} °C")
+print(" ")
+print(f"Mês mais frio do ano foi: {mesFrio.upper()}, atingindo a mínima de {temperaturaMin}°C")
+print(" ")
+print("=" * 25)
+print(" ")
+print("Obrigado por utilizar nosso sistema")
+print("Feito por Arthur Cerqueira")
+print(" ")
